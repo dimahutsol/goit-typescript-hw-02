@@ -1,0 +1,63 @@
+.modal {
+	max-width: 80vw;
+	max-height: 80vh;
+	& img {
+		max-width: 85%;
+		margin: 0 auto;
+		border-radius: 5px;
+	}
+}
+
+.info {
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+	margin: 20px;
+}
+
+.likes {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	cursor: pointer;
+	&:hover svg {
+		fill: red;
+		transform: scale(1.2);
+	}
+	& svg {
+		fill: gray;
+		width: 25px;
+		height: 25px;
+		transition: all 0.2s ease-in-out;
+	}
+	& p {
+		font-weight: 600;
+		font-size: 24px;
+		color: white;
+	}
+}
+
+.tags {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	& span {
+		padding: 5px 20px;
+		border-radius: 5px;
+		font-size: 24px;
+		text-transform: capitalize;
+		background: linear-gradient(
+			288deg,
+			#45bde9 46.75%,
+			#926aef 78.27%,
+			#d82fc6 107.61%
+		);
+		transition: box-shadow 0.3s ease-in-out;
+		&:hover,
+		&:focus {
+			box-shadow: 0 4px 6px rgba(63, 81, 181, 0.2),
+				0 1px 3px rgba(63, 81, 181, 0.15), 0 8px 16px rgba(63, 81, 181, 0.1),
+				0 0 0 4px rgba(63, 81, 181, 0.3);
+		}
+	}
+}

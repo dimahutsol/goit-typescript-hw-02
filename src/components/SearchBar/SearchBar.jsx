@@ -1,24 +1,25 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import toast from 'react-hot-toast';
 import { searchBarSchema } from '../../helpers/validationSchemas';
+import clsx from 'clsx';
+import s from './SearchBar.module.css';
 
 const SearchBar = ({ handleSearchSubmit }) => {
 	const handleSubmit = (values, options) => {
 		if (!values.searchField) {
-			toast('Toast');
-			console.log(1);
+			toast.error('Please, type something to search');
 		}
 		handleSearchSubmit(values.searchField);
 		options.resetForm();
 	};
 
 	return (
-		<header>
+		<header className={clsx(s.header)}>
 			<Formik
 				initialValues={{ searchField: '' }}
 				onSubmit={handleSubmit}
 				validationSchema={searchBarSchema}>
-				<Form>
+				<Form className={clsx(s.form)}>
 					<Field
 						name='searchField'
 						type='text'

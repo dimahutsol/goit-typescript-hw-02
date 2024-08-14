@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import SearchBar from './components/SearchBar/SearchBar';
-import { Toaster } from 'react-hot-toast';
 import { fetchImages } from './services/api';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import Loader from './components/Loader/Loader';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
+import ImageModal from './components/ImageModal/ImageModal';
 
 function App() {
 	const [query, setQuery] = useState('');
@@ -14,6 +14,8 @@ function App() {
 	const [isError, setIsError] = useState(false);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [modalImage, setModalImage] = useState({});
 
 	const handleSearchSubmit = value => {
 		setPhotos([]);
@@ -28,6 +30,15 @@ function App() {
 		setPage(prev => prev + 1);
 	};
 
+	const handleModalOpen = image => {
+		setModalImage(image);
+		setIsModalOpen(true);
+	};
+
+	const handleModalClose = () => {
+		setIsModalOpen(false);
+	};
+
 	useEffect(() => {
 		if (!query) return;
 		const fetchData = async () => {
@@ -35,7 +46,6 @@ function App() {
 				setIsLoading(true);
 				setIsError(false);
 				const res = await fetchImages({ query, page });
-				console.log('res', res);
 				setTotalPages(res.total_pages);
 				setPhotos(prev => [...prev, ...res.results]);
 			} catch {
@@ -51,37 +61,18 @@ function App() {
 	return (
 		<div>
 			<SearchBar handleSearchSubmit={handleSearchSubmit} />
-			{photos.length > 0 && !isError && <ImageGallery images={photos} />}
+			{photos.length > 0 && !isError && (
+				<ImageGallery images={photos} handleModalOpen={handleModalOpen} />
+			)}
 			{isError && <ErrorMessage />}
 			{isLoading && <Loader />}
 			{photos.length > 0 && !isLoading && page < totalPages && (
 				<LoadMoreBtn onLoadMore={handleLoadMore} />
 			)}
-
-			<Toaster
-				position='top-center'
-				reverseOrder={false}
-				gutter={8}
-				containerClassName=''
-				containerStyle={{}}
-				toastOptions={{
-					// Define default options
-					className: '',
-					duration: 5000,
-					style: {
-						background: '#363636',
-						color: '#fff',
-					},
-
-					// Default options for specific types
-					success: {
-						duration: 3000,
-						theme: {
-							primary: 'green',
-							secondary: 'black',
-						},
-					},
-				}}
+			<ImageModal
+				image={modalImage}
+				isOpen={isModalOpen}
+				onClose={handleModalClose}
 			/>
 		</div>
 	);

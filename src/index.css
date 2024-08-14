@@ -7,6 +7,12 @@
 body {
 	margin: 0;
 	font-family: sans-serif;
+	background: linear-gradient(
+		288deg,
+		#45bde9 46.75%,
+		#926aef 78.27%,
+		#d82fc6 107.61%
+	);
 }
 
 h1,

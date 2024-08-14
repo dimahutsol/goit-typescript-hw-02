@@ -1,0 +1,58 @@
+.header {
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.6);
+	border-bottom: 2px solid black;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form {
+	display: flex;
+	gap: 20px;
+	& input {
+		font-size: 18px;
+		padding: 10px 15px;
+		border: none;
+		background-color: rgba(0, 0, 0, 0.3);
+		border-radius: 5px;
+		color: white;
+		outline: none;
+		transition: box-shadow 0.3s ease-in-out;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.5),
+			0 8px 16px rgba(0, 0, 0, 0.5);
+		&:hover,
+		&:focus {
+			box-shadow: 0 4px 6px rgba(63, 81, 181, 0.2),
+				0 1px 3px rgba(63, 81, 181, 0.15), 0 8px 16px rgba(63, 81, 181, 0.1),
+				0 0 0 4px rgba(63, 81, 181, 0.3);
+		}
+		&::placeholder {
+			color: gray;
+		}
+	}
+	& button {
+		font-size: 18px;
+		background: linear-gradient(
+			288deg,
+			#45bde9 46.75%,
+			#926aef 78.27%,
+			#d82fc6 107.61%
+		);
+		border: none;
+		padding: 10px;
+		border-radius: 5px;
+		color: black;
+		font-weight: 600;
+		transition: box-shadow 0.3s ease-in-out;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.5),
+			0 8px 16px rgba(0, 0, 0, 0.5);
+		&:hover,
+		&:focus {
+			box-shadow: 0 4px 6px rgba(63, 81, 181, 0.2),
+				0 1px 3px rgba(63, 81, 181, 0.15), 0 8px 16px rgba(63, 81, 181, 0.1),
+				0 0 0 4px rgba(63, 81, 181, 0.3);
+		}
+	}
+}

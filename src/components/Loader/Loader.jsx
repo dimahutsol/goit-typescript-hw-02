@@ -1,17 +1,17 @@
-import { Grid } from 'react-loader-spinner';
+import { DNA } from 'react-loader-spinner';
+import clsx from 'clsx';
+import s from './Loader.module.css';
 
 const Loader = () => {
 	return (
-		<div>
-			<Grid
+		<div className={clsx(s.loader)}>
+			<DNA
 				visible={true}
 				height='80'
 				width='80'
-				color='#4fa94d'
-				ariaLabel='grid-loading'
-				radius='12.5'
+				ariaLabel='dna-loading'
 				wrapperStyle={{}}
-				wrapperClass='grid-wrapper'
+				wrapperClass='dna-wrapper'
 			/>
 		</div>
 	);
