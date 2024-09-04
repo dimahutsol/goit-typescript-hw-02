@@ -1,8 +1,13 @@
 import clsx from 'clsx';
 import s from './ImageGallery.module.css';
 import ImageCard from '../ImageCard/ImageCard';
+import { ImageGalleryPropsType } from './ImageGallery.types';
+import { FC } from 'react';
 
-const ImageGallery = ({ images, handleModalOpen }) => {
+const ImageGallery: FC<ImageGalleryPropsType> = ({
+	images,
+	handleModalOpen,
+}) => {
 	return (
 		<ul className={clsx(s.list)}>
 			{images.map(

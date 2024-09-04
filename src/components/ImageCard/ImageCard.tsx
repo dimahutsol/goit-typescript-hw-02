@@ -1,7 +1,9 @@
 import clsx from 'clsx';
 import s from './ImageCard.module.css';
+import { FC } from 'react';
+import { ImageCardPropsType } from './ImageCard.types';
 
-const ImageCard = ({
+const ImageCard: FC<ImageCardPropsType> = ({
 	smallImage,
 	regularImage,
 	alt,

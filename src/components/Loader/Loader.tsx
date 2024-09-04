@@ -1,8 +1,9 @@
 import { DNA } from 'react-loader-spinner';
 import clsx from 'clsx';
 import s from './Loader.module.css';
+import { FC } from 'react';
 
-const Loader = () => {
+const Loader: FC = () => {
 	return (
 		<div className={clsx(s.loader)}>
 			<DNA

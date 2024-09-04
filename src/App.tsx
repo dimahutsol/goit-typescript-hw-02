@@ -6,18 +6,29 @@ import Loader from './components/Loader/Loader';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
+import { modalImageType } from './commonTypes';
+import { PhotoType } from './services/api.types';
+
+const modalImageInitialValues = {
+	alt: '',
+	likes: 0,
+	tags: [],
+	url: '',
+};
 
 function App() {
-	const [query, setQuery] = useState('');
-	const [photos, setPhotos] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const [isError, setIsError] = useState(false);
-	const [page, setPage] = useState(1);
-	const [totalPages, setTotalPages] = useState(0);
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [modalImage, setModalImage] = useState({});
+	const [query, setQuery] = useState<string>('');
+	const [photos, setPhotos] = useState<PhotoType[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isError, setIsError] = useState<boolean>(false);
+	const [page, setPage] = useState<number>(1);
+	const [totalPages, setTotalPages] = useState<number>(0);
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const [modalImage, setModalImage] = useState<modalImageType>(
+		modalImageInitialValues
+	);
 
-	const handleSearchSubmit = value => {
+	const handleSearchSubmit = (value: string): void => {
 		setPhotos([]);
 		setIsLoading(false);
 		setIsError(false);
@@ -26,11 +37,11 @@ function App() {
 		setQuery(value);
 	};
 
-	const handleLoadMore = () => {
-		setPage(prev => prev + 1);
+	const handleLoadMore = (): void => {
+		setPage((prev) => prev + 1);
 	};
 
-	const handleModalOpen = image => {
+	const handleModalOpen = (image: modalImageType) => {
 		setModalImage(image);
 		setIsModalOpen(true);
 	};
@@ -47,7 +58,7 @@ function App() {
 				setIsError(false);
 				const res = await fetchImages({ query, page });
 				setTotalPages(res.total_pages);
-				setPhotos(prev => [...prev, ...res.results]);
+				setPhotos((prev) => [...prev, ...res.results]);
 			} catch {
 				setIsError(true);
 			} finally {

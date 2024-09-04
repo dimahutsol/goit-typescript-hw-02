@@ -2,6 +2,9 @@ import Modal from 'react-modal';
 import { FaHeart } from 'react-icons/fa';
 import clsx from 'clsx';
 import s from './ImageModal.module.css';
+import { FC } from 'react';
+import { ImageModalPropsType } from './ImageModal.types';
+import { tagType } from '../../commonTypes';
 
 const customStyles = {
 	content: {
@@ -19,7 +22,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const ImageModal = ({ image, isOpen, onClose }) => {
+const ImageModal: FC<ImageModalPropsType> = ({ image, isOpen, onClose }) => {
 	return (
 		<div>
 			<Modal
@@ -32,13 +35,11 @@ const ImageModal = ({ image, isOpen, onClose }) => {
 					<p className={clsx(s.desc)}></p>
 					<div className={clsx(s.info)}>
 						<div className={clsx(s.likes)}>
-							{/* <span> */}
 							<FaHeart />
-							{/* </span> */}
 							<p>{image.likes}</p>
 						</div>
 						<div className={clsx(s.tags)}>
-							{image.tags?.map((tag, idx) => (
+							{image.tags?.map((tag: tagType, idx: number) => (
 								<span key={idx}>{tag.title}</span>
 							))}
 						</div>
